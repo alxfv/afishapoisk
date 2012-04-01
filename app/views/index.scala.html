@@ -1,7 +1,17 @@
-@(message: String)
+@(categories: List[Category], categoryForm: Form[Category])
 
-@main("Welcome to Play 2.0") {
+@import helper._
+
+<ul>
+@for(category <- categories) {
+    <li>id = @category.id  test = @category.test  title = @category.title</li>
+}
+</ul>
+
+<h2>Create category</h2>
     
-    @play20.welcome(message, style = "Java")
-    
+@form(routes.Application.newCategory()) {
+    @inputText(categoryForm("title")) 
+    @inputText(categoryForm("test")) 
+    <input type="submit" value="Create">
 }
