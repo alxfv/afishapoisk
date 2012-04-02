@@ -4,9 +4,9 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET     /category/:id               controllers.Application.showCategory(id: Long)
-POST    /newCategory                controllers.Application.newCategory()
-#GET     /event/:id                  controllers.Application.showEvent(id: Long)
+GET     /category/:id               controllers.Categories.show(id: Long)
+POST    /add                        controllers.Categories.add()
+POST    /category/:id/delete        controllers.Categories.delete(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

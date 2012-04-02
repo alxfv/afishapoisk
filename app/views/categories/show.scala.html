@@ -1,0 +1,11 @@
+@(category: Category)
+
+@import helper._
+
+@main("Welcome") {
+    <h1>@category.title</h1>
+    
+    @form(routes.Categories.delete(category.id)) {
+        <button type="submit" class="btn">Удалить</button>
+    }
+}

@@ -1,12 +1,10 @@
 package models;
 
 import java.util.*;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-import play.data.format.*;
 import play.db.ebean.*;
+import play.data.validation.*;
 
 @Entity
 public class Category extends Model {
@@ -14,11 +12,10 @@ public class Category extends Model {
     @Id
     public Long id;
 
+    @Constraints.Required
     public String title;
     
-    public Long test;
-    
-    public static Finder<Long, Category> find = new Finder(Long.class, Category.class);
+    public static Model.Finder<Long,Category> find = new Model.Finder(Long.class, Category.class);
     
     public static List<Category> all() {
         return find.all();
@@ -26,5 +23,9 @@ public class Category extends Model {
     
     public static void create(Category category) {
         category.save();
+    }
+    
+    public static void delete(Long id) {
+        find.ref(id).delete();
     }
 }

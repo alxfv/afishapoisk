@@ -2,16 +2,27 @@
 
 @import helper._
 
-<ul>
-@for(category <- categories) {
-    <li>id = @category.id  test = @category.test  title = @category.title</li>
-}
-</ul>
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) } 
 
-<h2>Create category</h2>
+@main("Welcome") {
+    <h2>Список категорий</h2>
+    <ul class="nav nav-pills">
+    @for(category <- categories) {
+        <li><a href="@routes.Categories.show(category.id)">@category.title</a></li>
+    }
+    </ul>
     
-@form(routes.Application.newCategory()) {
-    @inputText(categoryForm("title")) 
-    @inputText(categoryForm("test")) 
-    <input type="submit" value="Create">
+    <div class="row">
+        <div class="span4">
+        <fieldset>
+            <legend>Добавить категорию</legend>
+            @form(routes.Categories.add()) {
+                @inputText(categoryForm("title"))
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                  </div>
+            }
+        </fieldset>
+        </div>
+    </div>
 }
