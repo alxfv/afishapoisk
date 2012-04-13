@@ -12,23 +12,31 @@ import views.html.categories.*;
 
 public class Categories extends Controller {
 
-    public static Result show(Long id) {
-        Category category = Category.find.byId(id);
-        return ok(show.render(category));
-    }
+  public static Result show(Long id) {
+    Category category = Category.find.byId(id);
+    return ok(show.render(category));
+  }
+  
+  public static Result list() {
+    return ok(list.render(Category.all()));
+  }
+  
+  public static Result add() {
+    Form<Category> categoryForm = form(Category.class);
+    return ok(add.render(categoryForm));
+  }
 
-    public static Result add() {
-        Form<Category> filledForm = form(Category.class).bindFromRequest();
-        if(filledForm.hasErrors()) {
-            return badRequest(views.html.index.render(Category.all(), filledForm));
-        } else {
-            Category.create(filledForm.get());
-            return redirect(routes.Application.index());  
-        }
-    }
-    
-    public static Result delete(Long id) {
-        Category.delete(id);
-        return redirect(routes.Application.index());
-    }
+  public static Result create() {
+    Form<Category> categoryForm = form(Category.class).bindFromRequest();
+    if(categoryForm.hasErrors()) {
+      return badRequest(add.render(categoryForm));
+    } 
+    Category.create(categoryForm.get());
+    return redirect(routes.Categories.list());  
+  }
+  
+  public static Result delete(Long id) {
+    Category.delete(id);
+    return redirect(routes.Application.index());
+  }
 }

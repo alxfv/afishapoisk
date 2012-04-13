@@ -1,0 +1,26 @@
+@(categories: List[Category])
+
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) } 
+
+@main("Категории") {
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Категория</th>
+          <th>На главную</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(category <- categories) {
+          <tr>
+            <td>@category.title</td>
+            <td>@category.front</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    <a href="@routes.Categories.add()" class="btn">Добавить категорию</a>
+}

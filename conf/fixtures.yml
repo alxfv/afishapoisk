@@ -1,0 +1,47 @@
+
+categories:
+
+    - !!models.Category
+        id:         1
+        title:      Кино
+        front:      true
+    
+    - !!models.Category
+        id:         2
+        title:      Концерты
+        front:      true
+        
+    - !!models.Category
+        id:         3
+        title:      Выставки
+        front:      true
+        
+    - !!models.Category
+        id:         4
+        title:      Театр
+        front:      true
+    
+# Events
+
+events:
+
+      - !!models.Event
+          id:         1
+          title:      Люди в черном 3
+          front:      true
+          category:   !!models.Category
+                          id: 1
+
+      - !!models.Event
+          id:         2
+          title:      Мстители
+          front:      false
+          category:   !!models.Category
+                          id: 1
+
+      - !!models.Event
+          id:         3
+          title:      Red Hot Chilli Pappers
+          front:      true
+          category:   !!models.Category
+                          id: 2

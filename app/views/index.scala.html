@@ -1,28 +1,20 @@
-@(categories: List[Category], categoryForm: Form[Category])
+@(categories: List[Category], events: List[Event])
 
 @import helper._
 
 @implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) } 
 
 @main("Welcome") {
-    <h2>Список категорий</h2>
-    <ul class="nav nav-pills">
-    @for(category <- categories) {
-        <li><a href="@routes.Categories.show(category.id)">@category.title</a></li>
+
+    <ul>
+    @for(event <- events) {
+        @if(event.front == true) {
+            <li>@event.title</li>
+        }
     }
     </ul>
-    
-    <div class="row">
-        <div class="span4">
-        <fieldset>
-            <legend>Добавить категорию</legend>
-            @form(routes.Categories.add()) {
-                @inputText(categoryForm("title"))
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
-                  </div>
-            }
-        </fieldset>
-        </div>
-    </div>
+
+    <a href="@routes.Events.add()" class="btn btn-primary">Добавить Событие</a>
+    <a href="@routes.Categories.add()" class="btn btn-primary">Добавить категорию</a>
+    <a class="btn" href="@routes.Admin.index()">Админка</a>
 }

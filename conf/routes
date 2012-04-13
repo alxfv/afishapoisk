@@ -3,10 +3,23 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
-GET     /category/:id               controllers.Categories.show(id: Long)
-POST    /add                        controllers.Categories.add()
-POST    /category/:id/delete        controllers.Categories.delete(id: Long)
+GET     /                             controllers.Application.index()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /assets/*file                 controllers.Assets.at(path="/public", file)
+
+# Admin routes
+GET     /admin                        controllers.Admin.index()
+GET     /admin/category               controllers.Categories.list()
+POST    /admin/category/:id/delete  				controllers.Categories.delete(id: Long)
+
+# Routes for work with categories
+GET     /category/add           			controllers.Categories.add()
+POST    /category/create        			controllers.Categories.create()
+GET     /category/:id                 controllers.Categories.show(id: Long)
+# With regular expression: GET     /category/$id<[0-9]+>         controllers.Categories.show(id: Long)
+
+# Routes for events
+GET     /event/add                    controllers.Events.add()
+POST    /event/create                 controllers.Events.create()
+GET     /event/:id                    controllers.Categories.show(id: Long)
