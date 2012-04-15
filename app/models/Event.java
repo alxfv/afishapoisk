@@ -28,6 +28,7 @@ public class Event extends Model {
   public Boolean front;
     
   @ManyToOne
+  @Constraints.Required
   public Category category;
   
   public static Model.Finder<Long, Event> find = new Model.Finder<Long, Event>(Long.class, Event.class);
@@ -36,8 +37,7 @@ public class Event extends Model {
     return find.all();
   }
   
-  public static void create(Event event, Category category) {
-    event.category = Category.find.ref(category.id);
+  public static void create(Event event) {
     event.save();
   }
 }

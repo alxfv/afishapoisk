@@ -1,0 +1,32 @@
+@(eventForm: Form[Event])
+
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) } 
+
+@main("Welcome") {
+    <div class="row">
+        <div class="span4">
+            @form(routes.Events.create(), 'class -> "form-horizontal") {
+              
+              <fieldset>
+                <legend>Добавить событие</legend>
+                @inputText(eventForm("title"), '_label -> "Название события")
+                @checkbox(eventForm("front"), '_label -> "Выводить на главную")
+                
+                @select(
+                    eventForm("category.id"), 
+                    options(Category.options), 
+                    '_label -> "Категория", '_default -> "-- Выбрать категорию --",
+                    '_showConstraints -> false
+                )
+                
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">Сохранить</button>
+                  <a href="@routes.Application.index()" class="btn">Отмена</a> 
+                </div>
+              </fieldset>
+            }
+        </div>
+    </div>
+}

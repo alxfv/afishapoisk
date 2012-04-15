@@ -10,3 +10,4 @@ dist
 .project
 test
 .cache
+/nbproject/private/

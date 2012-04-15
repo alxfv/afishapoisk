@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Category;
+import models.Event;
 import play.*;
 import play.mvc.*;
 import play.data.*;
@@ -14,10 +15,16 @@ public class Events extends Controller {
   }
   
   public static Result add() {
-    return TODO;
+    Form<Event> eventForm = form(Event.class);
+    return ok(add.render(eventForm));
   }
 
   public static Result create() {
-    return TODO;
+    Form<Event> eventForm = form(Event.class).bindFromRequest();
+    if (eventForm.hasErrors()) {
+      return badRequest(add.render(eventForm));
+    }
+    Event.create(eventForm.get());
+    return redirect(routes.Application.index());
   }
 }

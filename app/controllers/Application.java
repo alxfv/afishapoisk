@@ -10,7 +10,7 @@ import views.html.*;
 public class Application extends Controller {
 
   public static Result index() {
-    return ok(index.render(Category.allFront(), Event.all()));
+    return ok(index.render(Category.allFront(), Event.all(), form(Search.class)));
   }
   
   /**

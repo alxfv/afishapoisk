@@ -1,6 +1,7 @@
 package models;
 
 import java.util.*;
+
 import javax.persistence.*;
 
 import play.db.ebean.*;
@@ -36,5 +37,13 @@ public class Category extends Model {
     
     public static void delete(Long id) {
       find.ref(id).delete();
+    }
+    
+    public static Map<String,String> options() {
+      LinkedHashMap<String,String> options = new LinkedHashMap<String,String>();
+      for(Category c: Category.find.orderBy("title").findList()) {
+        options.put(c.id.toString(), c.title);
+      }
+      return options;
     }
 }

@@ -1,11 +1,27 @@
-@(categories: List[Category], events: List[Event])
+@(categories: List[Category], events: List[Event], searchForm: Form[Search])
 
 @import helper._
 
 @implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) } 
 
 @main("Welcome") {
-
+    
+    <div class="row">
+        <div class="span4">
+            @form(routes.Application.index(), 'class -> "form-horizontal") {
+              
+              <fieldset>
+                <legend>Поиск</legend>
+                @inputText(searchForm("activity"))
+                
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">Искать</button>
+                </div>
+              </fieldset>
+            }
+        </div>
+    </div>
+    
     <ul>
     @for(event <- events) {
         @if(event.front == true) {
