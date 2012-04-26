@@ -12,6 +12,8 @@
               
               <fieldset>
                 <legend>Поиск</legend>
+                @select(searchForm("people"), options(Search.options))
+                @inputText(searchForm("date"))
                 @inputText(searchForm("activity"))
                 
                 <div class="form-actions">
@@ -29,8 +31,4 @@
         }
     }
     </ul>
-
-    <a href="@routes.Events.add()" class="btn btn-primary">Добавить Событие</a>
-    <a href="@routes.Categories.add()" class="btn btn-primary">Добавить категорию</a>
-    <a class="btn" href="@routes.Admin.index()">Админка</a>
 }

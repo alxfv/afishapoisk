@@ -5,12 +5,13 @@
 @main("Welcome") {
     <h1>@category.title</h1>
     
-    @form(routes.Categories.delete(category.id)) {
         <ul>
         @for(event <- category.events) {
             <li>@event.title</li>
         }
         </ul>
+    
+    @form(routes.Categories.delete(category.id)) {
         <button type="submit" class="btn">Удалить</button>
     }
 }
