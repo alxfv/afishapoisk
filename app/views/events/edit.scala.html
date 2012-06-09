@@ -7,7 +7,7 @@
 @main("Welcome") {
     <div class="row">
         <div class="span4">
-            @form(routes.Events.create(), 'class -> "form-horizontal") {
+            @form(routes.Events.update(), 'class -> "form-horizontal", 'enctype -> "multipart/form-data") {
               
               <fieldset>
                 <legend>Добавить событие</legend>
@@ -22,12 +22,27 @@
                     '_showConstraints -> false
                 )
                 
+                <div class="control-group ">
+								    <label class="control-label" for="info">Картинка</label>
+								    <div class="controls">
+						    			<input type="file" name="image" id="image">
+								    </div>
+								</div>
+                
+						    
+                
+                <input type="hidden" value="@eventForm("id").value" name="id" />
+                
                 <div class="form-actions">
                   <button type="submit" class="btn btn-primary">Сохранить</button>
                   <a href="@routes.Application.index()" class="btn">Отмена</a> 
                 </div>
               </fieldset>
             }
+
+				    @form(routes.Events.delete(Long.parseLong(eventForm("id").value, 10)), 'class -> "topRight") {
+				        <input type="submit" value="Удалить" class="btn btn-danger">
+				    }
         </div>
     </div>
 }

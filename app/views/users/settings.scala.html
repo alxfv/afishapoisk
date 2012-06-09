@@ -1,0 +1,32 @@
+@(name: String)
+
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) } 
+
+@main("Настройки") {
+    
+	<div class="row">
+	  <div class="span12">
+	  	<h1>@name</h1>
+	  </div>
+	  <div class="span4">
+	  	<ul class="nav nav-pills nav-stacked">
+	  		<li class="active"><a href="#">Профиль</a></li>
+	  		<li><a href="#">Пароль</a></li>
+	  		<li><a href="#">Аккаунт</a></li>
+			</ul>
+		</div>
+	  <div class="span8">
+	  
+        @form(routes.Users.settings) { 
+        
+            <h2>Профиль</h2>
+            
+            <p>
+                <button type="submit">Сохранить</button>
+            </p>
+        }
+	  </div>
+	</div>
+}

@@ -8,27 +8,7 @@
     
     <div class="row">
         <div class="span4">
-            @form(routes.Application.search(), 'class -> "form-horizontal") {
-              
-              <fieldset>
-                <legend>Поиск</legend>
-                @select(searchForm("people"), options(Search.options))
-                @inputText(searchForm("date"))
-                @inputText(searchForm("activity"))
-                
-                <div class="form-actions">
-                  <button type="submit" class="btn btn-primary">Искать</button>
-                </div>
-              </fieldset>
-            }
+            @sf(searchForm)
         </div>
     </div>
-    
-    <ul>
-    @for(event <- events) {
-        @if(event.front == true) {
-            <li>@event.title</li>
-        }
-    }
-    </ul>
 }

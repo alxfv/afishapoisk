@@ -7,6 +7,7 @@ import com.avaje.ebean.Ebean;
 
 import play.*;
 import play.libs.Yaml;
+import play.mvc.Http.Context;
 
 public class Global extends GlobalSettings {
   
@@ -28,6 +29,12 @@ public class Global extends GlobalSettings {
 
         // Insert events
         Ebean.save(all.get("events"));
+
+        // Insert users
+        Ebean.save(all.get("users"));
+        
+        // Insert cities
+        Ebean.save(all.get("cities"));
       }
     }
   }

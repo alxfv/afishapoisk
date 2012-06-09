@@ -28,6 +28,7 @@ events:
       - !!models.Event
           id:         1
           title:      Люди в черном 3
+          info:       Агент Джей оправляется в прошлое, чтобы спасти агента Кея. Заодно с другом он будет спасать и Землю.
           front:      true
           category:   !!models.Category
                           id: 1
@@ -45,3 +46,32 @@ events:
           front:      true
           category:   !!models.Category
                           id: 2
+
+#Users
+
+users:
+
+      - !!models.User
+          id:         1
+          name:       faost
+          password:   123
+          email:      faost@mail.ru
+
+      - !!models.User
+          id:         2
+          name:       test
+          password:   123
+          email:      test@mail.ru
+
+
+#Cities
+
+cities:
+
+      - !!models.City
+          id:         1
+          name:       Москва
+
+      - !!models.City
+          id:         2
+          name:       Санкт-Петербург

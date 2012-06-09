@@ -1,9 +1,14 @@
 package controllers;
 
-import models.Category;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.*;
+
 import models.Event;
-import play.*;
+import play.Logger;
 import play.mvc.*;
+import play.mvc.Http.MultipartFormData;
+import play.mvc.Http.MultipartFormData.FilePart;
 import play.data.*;
 
 import views.html.events.*;
@@ -11,9 +16,10 @@ import views.html.events.*;
 public class Events extends Controller {
 
   public static Result show(Long id) {
-    return TODO;
+    Event event = Event.find.byId(id);
+    return ok(show.render(event));
   }
-  
+
   public static Result add() {
     Form<Event> eventForm = form(Event.class);
     return ok(add.render(eventForm));
@@ -25,6 +31,51 @@ public class Events extends Controller {
       return badRequest(add.render(eventForm));
     }
     Event.create(eventForm.get());
+    return redirect(routes.Application.index());
+  }
+  
+  public static Result edit(Long id) {
+    Event event = Event.find.byId(id);
+    Form<Event> eventForm = form(Event.class).fill(event);
+    return ok(edit.render(eventForm));
+  }
+  
+  public static Result update() {
+    Form<Event> eventForm = form(Event.class).bindFromRequest();
+    if (eventForm.hasErrors()) {
+      return badRequest(add.render(eventForm));
+    }
+    Event event = eventForm.get();
+    
+    MultipartFormData body = request().body().asMultipartFormData();
+    FilePart image = body.getFile("image");
+    
+    if (image != null) {
+      String fileName = image.getFilename();
+      Logger.info(image.getContentType());
+      File file = image.getFile();
+      Logger.info(file.getPath());
+//      FileUtils.copyFile(srcFile, destFile);
+//      java.nio.file.Files.copy(source, target, options);
+      Path source = Paths.get(file.getPath());
+      Path target = Paths.get("/home/faost/tmp/ok/new.jpg");
+      try {
+        Files.move(source, target, StandardCopyOption.REPLACE_EXISTING);
+      } catch (IOException e) {
+        Logger.info(e.getMessage());
+      }
+      // @see http://stackoverflow.com/questions/244164/resize-an-image-in-java-any-open-source-library
+      // @see http://docs.oracle.com/javase/7/docs/api/java/awt/image/BufferedImage.html
+      // resize
+    }
+    
+    Event.update(event);
+    return redirect(routes.Events.show(event.id));
+  }
+  
+  public static Result delete(Long id) {
+    Event.find.ref(id).delete();
+    flash("success", "Событие удалено");
     return redirect(routes.Application.index());
   }
 }

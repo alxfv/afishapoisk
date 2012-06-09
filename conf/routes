@@ -6,21 +6,36 @@
 GET     /                             controllers.Application.index()
 GET     /search                       controllers.Application.search()
 
+# Application
+GET     /login                        controllers.Application.login()
+GET     /login1                       controllers.Application.authenticate()
+GET     /logout                       controllers.Application.logout()
+
+# User
+GET     /settings                     controllers.Users.settings()
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                 controllers.Assets.at(path="/public", file)
 
 # Admin routes
 GET     /admin                        controllers.Admin.index()
 GET     /admin/category               controllers.Categories.list()
-POST    /admin/category/:id/delete  				controllers.Categories.delete(id: Long)
+POST    /admin/category/:id/delete  	controllers.Categories.delete(id: Long)
 
 # Routes for work with categories
 GET     /category/add           			controllers.Categories.add()
 POST    /category/create        			controllers.Categories.create()
 GET     /category/:id                 controllers.Categories.show(id: Long)
-# With regular expression: GET     /category/$id<[0-9]+>         controllers.Categories.show(id: Long)
+# With regular expression:
+# GET     /category/$id<[0-9]+>         controllers.Categories.show(id: Long)
 
 # Routes for events
 GET     /event/add                    controllers.Events.add()
 POST    /event/create                 controllers.Events.create()
-GET     /event/:id                    controllers.Categories.show(id: Long)
+GET     /event/:id                    controllers.Events.show(id: Long)
+GET     /event/:id/edit               controllers.Events.edit(id: Long)
+POST    /event/update                 controllers.Events.update()
+POST    /event/:id/delete             controllers.Events.delete(id:Long)
+
+# Routes for cities
+GET     /city/change/:id              controllers.Cities.change(id: Long)

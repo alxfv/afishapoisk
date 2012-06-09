@@ -3,13 +3,15 @@
 @import helper._
 
 @main("Welcome") {
-    <h1>@category.title</h1>
-    
-        <ul>
-        @for(event <- category.events) {
-            <li>@event.title</li>
-        }
-        </ul>
+		<div class="page-header">
+	    <h1>@category.title</h1>
+	  </div>
+  
+    <ul>
+    @for(event <- category.events) {
+        <li><a href="@routes.Events.show(event.id)">@event.title</a></li>
+    }
+    </ul>
     
     @form(routes.Categories.delete(category.id)) {
         <button type="submit" class="btn">Удалить</button>
