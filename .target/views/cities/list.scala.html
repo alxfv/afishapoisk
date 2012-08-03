@@ -1,9 +1,0 @@
-@(current: City, cities: List[City])
-
-<a href="#" class="dropdown-toggle" data-toggle="dropdown">@current.name <b class="caret"></b></a>
-<ul class="dropdown-menu">
-@for(city <- cities) {
-	<li><a href="@routes.Cities.change(city.id)">@city.name</a></li>
-}
-</ul>
-<!-- <li class="divider"></li> -->

@@ -1,9 +1,0 @@
-@(categories: List[Category])
-
-<div class="subnav">
-	<ul class="nav nav-pills">
-	    @for(category <- categories) {
-	    <li><a href="@routes.Categories.show(category.id)">@category.title</a></li>
-	}
-	</ul>
-</div>
