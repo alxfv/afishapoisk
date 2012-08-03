@@ -21,6 +21,45 @@ categories:
         title:      Театр
         front:      true
     
+
+#Cities
+
+cities:
+
+      - !!models.City
+          id:         1
+          name:       Москва
+
+      - !!models.City
+          id:         2
+          name:       Санкт-Петербург
+          
+places:
+
+    - !!models.Place
+        id:         1
+        name:       5 звезд на Павелецкой
+        city:       !!models.City
+                        id: 1
+        info:       "Билеты: 50-500 руб."
+        phone:      +7 (495) 916-91-73 (автоответчик), +7 (495) 916-91-69 (заказ билетов)
+        address:    ул. Бахрушина, 25
+        url:        www.5zvezd.ru
+        lat:        37.636329
+        lng:        55.731536
+        
+    - !!models.Place
+        id:         2
+        name:       Ходынка
+        city:       !!models.City
+                        id: 1
+        info:       "Режим работы: ср-вс 11.00–19.00. Вход 30 р."
+        phone:      (499) 943 69 41, 943 69 42, 198 76 84
+        address:    Ирины Левченко, 2
+        url:        arthodynka.ru
+        lat:        37.507901
+        lng:        55.775538
+    
 # Events
 
 events:
@@ -28,23 +67,43 @@ events:
       - !!models.Event
           id:         1
           title:      Люди в черном 3
-          info:       Агент Джей оправляется в прошлое, чтобы спасти агента Кея. Заодно с другом он будет спасать и Землю.
+          teaser:     Агент Джей оправляется в прошлое, чтобы спасти агента Кея. Заодно с другом он будет спасать и Землю
           front:      true
+          image:      ludi-v-chernom.jpg
           category:   !!models.Category
+                          id: 1
+          place:      !!models.Place
                           id: 1
 
       - !!models.Event
           id:         2
           title:      Мстители
+          teaser:     Железный человек, Капитан Америка, Тор и Скарлетт Йоханссон спасают мир
           front:      false
+          image:      mstiteli.jpg
           category:   !!models.Category
+                          id: 1
+          place:      !!models.Place
                           id: 1
 
       - !!models.Event
           id:         3
           title:      Red Hot Chilli Pappers
+          teaser:     Концерт легендарных рок-музыкантов
           front:      true
+          image:      rhcp.jpg
           category:   !!models.Category
+                          id: 2
+
+      - !!models.Event
+          id:         4
+          title:      Олег Федоров
+          teaser:     Выставка популярного московского художника
+          front:      true
+          image:      olegfedorov.jpg
+          category:   !!models.Category
+                          id: 3
+          place:      !!models.Place
                           id: 2
 
 #Users
@@ -62,16 +121,3 @@ users:
           name:       test
           password:   123
           email:      test@mail.ru
-
-
-#Cities
-
-cities:
-
-      - !!models.City
-          id:         1
-          name:       Москва
-
-      - !!models.City
-          id:         2
-          name:       Санкт-Петербург

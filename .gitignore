@@ -2,6 +2,7 @@ logs
 project/project
 project/target
 target
+.target
 tmp
 .history
 dist
@@ -11,3 +12,4 @@ dist
 test
 .cache
 /nbproject/private/
+public/uploads

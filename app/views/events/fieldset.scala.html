@@ -1,0 +1,39 @@
+@(eventForm: Form[Event])
+
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) }               
+              
+<fieldset>
+    <legend>Событие</legend>
+    @inputText(eventForm("title"), '_label -> "Название события", '_error -> "Введите название")
+    @inputText(eventForm("teaser"), '_label -> "Краткое описание", '_help -> "Суть события в одно предложение")
+    @textarea(eventForm("info"), '_label -> "Описание события", 'rows -> 3, 'cols -> 50)
+    @inputText(eventForm("start"), '_label -> "Дата начала", '_help -> "Формат: дд.мм.гггг чч:мм")
+    
+    @select(
+        eventForm("category.id"), 
+        options(Category.options), 
+        '_label -> "Категория", '_default -> "-- Выбрать категорию --",
+        '_showConstraints -> false
+    )
+    
+    @if(eventForm("image").value != null) {
+        <div class="control-group ">
+            <div class="controls">
+                <img src="@routes.Assets.at("uploads/images/events/presets/big/" + eventForm("image").value)" />
+            </div>
+        </div>
+    }
+    
+    @inputFile(eventForm("image"), '_label -> "Картинка")
+    
+    @checkbox(eventForm("front"), '_label -> "Выводить на главную")
+    @checkbox(eventForm("publish"), '_label -> "Публиковать")
+    
+    
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="@routes.Application.index()" class="btn">Отмена</a> 
+    </div>
+</fieldset>

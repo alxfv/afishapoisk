@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
@@ -16,6 +17,9 @@ public class City extends Model {
   
   @Required
   public String name;
+  
+  @OneToMany(mappedBy="city")
+  public List<Place> places;
   
   public static Model.Finder<Long, City> find = new Model.Finder<Long, City>(Long.class, City.class);
   

@@ -1,0 +1,44 @@
+@(place: Place)
+
+@main(place.name) {
+    <div class="page-header">
+        <h1>@place.name</h1>
+    </div>
+    
+    <div class="row">
+        <div class="span6">
+            @if(place.phone != null) {
+                <p>@place.phone</p>
+            }
+            @if(place.address != null) {
+                <p>@place.address</p>
+            }
+            @if(place.info != null) {
+                <p>@place.info</p>
+            }
+            @if(place.url != null) {
+                <p><a rel="nofollow" href="@place.url">@place.url</a></p>
+            }
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="span12">
+            <h2>Ближайшие события</h2>
+                @for(event <- place.getEvents) {
+                    <div class="row">
+                        <div class="span4">
+                            <a href="@routes.Events.show(event.id)">
+                                <img src="@routes.Assets.at("uploads/images/events/presets/big/" + event.image)" alt="@event.title" title="@event.title" />
+                            </a>
+                        </div>
+                        <div class="span6">
+                            <h3><a href="@routes.Events.show(event.id)">@event.title</a></h3>
+                            <p>@event.teaser</p>
+                        </div>
+                        
+                    </div>
+                }
+        </div>
+    </div>
+}

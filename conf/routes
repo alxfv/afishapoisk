@@ -7,9 +7,13 @@ GET     /                             controllers.Application.index()
 GET     /search                       controllers.Application.search()
 
 # Application
+GET     /test                         controllers.Application.test()
 GET     /login                        controllers.Application.login()
-GET     /login1                       controllers.Application.authenticate()
+POST    /login                        controllers.Application.authenticate()
 GET     /logout                       controllers.Application.logout()
+GET     /signup                       controllers.Application.signup()
+POST    /signup                       controllers.Application.signupSubmit()
+GET     /mail                         controllers.Application.mail()
 
 # User
 GET     /settings                     controllers.Users.settings()
@@ -34,8 +38,16 @@ GET     /event/add                    controllers.Events.add()
 POST    /event/create                 controllers.Events.create()
 GET     /event/:id                    controllers.Events.show(id: Long)
 GET     /event/:id/edit               controllers.Events.edit(id: Long)
-POST    /event/update                 controllers.Events.update()
+POST    /event/:id/update             controllers.Events.update(id: Long)
 POST    /event/:id/delete             controllers.Events.delete(id:Long)
+
+# Routes for places
+GET     /place/add                    controllers.Places.add()
+POST    /place/create                 controllers.Places.create()
+GET     /place/:id                    controllers.Places.show(id: Long)
+GET     /place/:id/edit               controllers.Places.edit(id: Long)
+POST    /place/:id/update             controllers.Places.update(id: Long)
+POST    /place/:id/delete             controllers.Places.delete(id:Long)
 
 # Routes for cities
 GET     /city/change/:id              controllers.Cities.change(id: Long)

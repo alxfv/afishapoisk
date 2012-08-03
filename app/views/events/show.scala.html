@@ -1,17 +1,28 @@
 @(event: Event)
 
 @main(event.title) {
+    <div class="page-header">
+        <h1>@event.title</h1>
+    </div>
     
-	<div class="page-header">
-    <h1>@event.title</h1>
-  </div>
-  
-	<div class="row">
-	  <div class="span8">
-	  		@event.info
-	  </div>
-		<div class="span4">
-    	<a class="btn" href="@routes.Events.edit(event.id)">Редактировать</a>
-		</div>
-	</div>
+    <div class="row">
+        @if(event.place != null) {
+            <div class="span8">
+                <p><a href="@routes.Places.show(event.place.id)">@(event.place)</a></p>
+            </div>
+        }
+        @if(event.image != null) {
+            <div class="span8">
+            	  <img src="@routes.Assets.at("uploads/images/events/presets/big/" + event.image)" alt="@event.title" title="@event.title" />
+            </div>
+        }
+        <div class="span4">
+            <a class="btn" href="@routes.Events.edit(event.id)">Редактировать</a>
+        </div>
+        @if(event.teaser != null) {
+            <div class="span8">
+          		  <p>@Html(event.teaser)</p>
+            </div>
+        }
+    </div>
 }

@@ -1,0 +1,26 @@
+@(events: List[Event], searchForm: Form[Search])
+
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) } 
+
+@main("Welcome") {
+    
+    <div class="row">
+        <div class="span4">
+        	@sf(searchForm)
+        </div>
+    </div>
+    
+    <ul>
+    @for(event <- events) {
+        @if(event.front == true) {
+            <li><a href="@routes.Events.show(event.id)">@event.title</a></li>
+        }
+    }
+    </ul>
+
+    <a href="@routes.Events.add()" class="btn btn-primary">Добавить Событие</a>
+    <a href="@routes.Categories.add()" class="btn btn-primary">Добавить категорию</a>
+    <a class="btn" href="@routes.Admin.index()">Админка</a>
+}

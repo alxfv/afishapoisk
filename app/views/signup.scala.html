@@ -1,0 +1,54 @@
+@(signupForm: Form[User])
+
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) } 
+
+@main("Welcome") {
+    
+    <div class="row">
+        <div class="span8">
+            
+        @form(routes.Application.signupSubmit, 'class -> "form-horizontal") { 
+        
+            <fieldset>
+		            <legend>Регистрация</legend>
+		            
+		            @inputText(
+		                signupForm("name"), 
+		                '_label -> "Логин",
+		                '_error -> signupForm.error("name")
+		            )
+		            
+		            @inputText(
+		                signupForm("email"),
+		                '_label -> "Email",
+		                '_error -> signupForm.error("email")
+		            )
+		            
+		            @inputPassword(
+		                signupForm("password"), 
+		                '_label -> "Пароль",
+		                '_error -> signupForm.error("password")
+		            )
+		            
+		            @inputPassword(
+		                signupForm("repeatPassword"), 
+		                '_label -> "Повторите пароль",
+		                '_error -> signupForm.error("repeatPassword")
+		            )
+            
+		            <div class="form-actions">
+				            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+		            </div>
+			        
+			          <p class="note">
+			              Try <em>test</em> with <em>123</em> as password.
+			          </p>
+            
+		        </fieldset>
+        }
+            
+        </div>
+    </div>
+}
