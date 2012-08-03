@@ -70,4 +70,8 @@ public class Place extends Model {
   public String toString() {
     return name;
   }
+  
+  public List<Event> getEvents() {
+    return events;
+  }
 }
